@@ -10,6 +10,42 @@ function delete_if_present(){
 	[[ "${droplet_id}" != "null" ]] && delete_droplet ${droplet_id} || echo "Droplet with tag ${tag_name} does not exist"
 }
 
+function create_root_domain_if_not_present(){	
+	local domain_name=${1}
+	domain_exists "${domain_name}" && echo "Domain already exists: ${domain_name}" || create_domain ${domain_name}
+}
+
+function create_domain(){
+	local domain_name=${1}
+	curl \
+		--silent \
+		--output /dev/null \
+		--header "Content-Type: application/json" \
+		--header "Authorization: Bearer ${api_key}" \
+		"https://api.digitalocean.com/v2/domains/" \
+		--data "{
+				  \"name\": \"${domain_name}\"				  
+				}"
+	[[ $? -eq 0 ]] && echo "Domain ${domain_name} created" || echo "Error while creating domain ${domain_name}"
+}
+
+function domain_exists(){	
+	local domain_name=${1}	
+	local located_domain_name=$(curl -X GET \
+		--silent \
+		--header "Content-Type: application/json" \
+		--header "Authorization: Bearer ${api_key}" \
+		"https://api.digitalocean.com/v2/domains/${domain_name}" | jq '.domain.name')
+	[[ "${located_domain_name}" == \"${domain_name}\" ]] && return 0 || return 1
+}
+
+function delete_if_present(){
+	local droplet_id=$(curl --silent \
+	     --header "Authorization: Bearer ${api_key}" \
+	     "https://api.digitalocean.com/v2/droplets?tag_name=${tag_name}"  | jq '.droplets[0] | .id')
+	[[ "${droplet_id}" != "null" ]] && delete_droplet ${droplet_id} || echo "Droplet with tag ${tag_name} does not exist"
+}
+
 function delete_droplet(){
 	echo "deleting droplet with tag ${tag_name}"
 	local droplet_id=${1}
@@ -69,5 +105,6 @@ function create_droplet(){
 }
 
 # main
+create_root_domain_if_not_present "codematters.io"
 delete_if_present
 create_droplet

@@ -50,3 +50,12 @@ function do.delete_domain(){
 		--header "Authorization: Bearer ${api_key}" \
 		"https://api.digitalocean.com/v2/domains/${domain_name}" | jq
 }
+
+function do.get_droplet_by_id(){
+	local tag_name=${1}
+	curl \
+		--silent \
+		--header "Content-Type: application/json" \
+		--header "Authorization: Bearer ${api_key}" \
+		"https://api.digitalocean.com/v2/droplets?tag_name=${tag_name}" | jq
+}
