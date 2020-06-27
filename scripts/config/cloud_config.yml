@@ -1,0 +1,8 @@
+#cloud-config
+runcmd:
+    - mkdir /root/www
+    - echo "hello, code does matter indeed!" > /root/www/index.html
+    - yum install -y python38
+    - sed -i 's/#GatewayPorts no/GatewayPorts yes/' /etc/ssh/sshd_config
+    - systemctl restart sshd
+    - cd /root/www && python3.8 -m http.server 80 --bind 0.0.0.0&
