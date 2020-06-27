@@ -68,12 +68,6 @@ function create_droplet(){
 
 }
 
-function list_all_distribution_images(){
-	curl --silent \
-	     --header "Authorization: Bearer ${api_key}" \
-	     "https://api.digitalocean.com/v2/images?type=distribution"
-}
-
 # main
 delete_if_present
 create_droplet
