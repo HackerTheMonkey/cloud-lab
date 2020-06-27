@@ -33,26 +33,26 @@ function create_droplet(){
 	curl \
 	 --silent \
 	 --output output.log \
-     --header "Authorization: Bearer ${api_key}" \
-     --header "Content-Type: application/json" \
-     "https://api.digitalocean.com/v2/droplets" \
-     --data "{
-			  \"name\": \"codematters-dryrun\",
-			  \"region\": \"lon1\",
-			  \"size\": \"s-1vcpu-1gb\",
-			  \"image\": \"centos-8-x64\",
-			  \"ssh_keys\": [
-			    $(get_ssh_key_id)
-			  ],
-			  \"backups\": false,
-			  \"ipv6\": false,
-			  \"user_data\": \"$(cat config/cloud_config.yml)\",
-			  \"private_networking\": null,
-			  \"volumes\": null,
-			  \"tags\": [
-			    \"${tag_name}\"
-			  ]
-			}" && echo "Droplet created with tag ${tag_name}" || echo "error while creating droplet, check output.log for more details."
+         --header "Authorization: Bearer ${api_key}" \
+         --header "Content-Type: application/json" \
+         "https://api.digitalocean.com/v2/droplets" \
+         --data "{
+		  \"name\": \"codematters-dryrun\",
+		  \"region\": \"lon1\",
+		  \"size\": \"s-1vcpu-1gb\",
+		  \"image\": \"centos-8-x64\",
+		  \"ssh_keys\": [
+		    $(get_ssh_key_id)
+		  ],
+		  \"backups\": false,
+		  \"ipv6\": false,
+		  \"user_data\": \"$(cat config/cloud_config.yml)\",
+		  \"private_networking\": null,
+		  \"volumes\": null,
+		  \"tags\": [
+		    \"${tag_name}\"
+		  ]
+		}" && echo "Droplet created with tag ${tag_name}" || echo "error while creating droplet, check output.log for more details."
 
 	# run the following command to check the progress of 
 	# the instance provisioning within the droplet
