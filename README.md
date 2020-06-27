@@ -15,4 +15,6 @@ given RecordExistsInDomainAgainstFloatingIP then noNewARecordIsCreated
 given rootDropletExists then newRootDropletIsDeleted
 given noRootDropletExists then newRootDropletIsCreated floatingIPIsAssigned
 
+TODO: make changes to accommodate for blue-green deployments
+
 ```
