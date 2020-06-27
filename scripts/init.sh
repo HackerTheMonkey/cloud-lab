@@ -28,11 +28,6 @@ function get_ssh_key_id(){
 }
 
 function create_droplet(){	
-	# TODO: add the possible sizes as a comment here for easy lookup
-	# TODO: what are the available images and their names?
-	# TODO: we need a little shortcut to quickly comment a line in bash
-	# TODO: what is the reference for the cloud-config yaml file format DSL ?
-
 	echo "creating a droplet, tagging as ${tag_name}"
 	
 	curl \
