@@ -1,3 +1,3 @@
-module codematters.io/codematters
+module github.com/HackerTheMonkey/codematters
 
 go 1.14
