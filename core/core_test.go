@@ -24,6 +24,7 @@ func Test_given_domainDoesNotExist_then_newDomainIsCreated(t *testing.T)  {
 	// Given
 	isDomainCreated := false
 	actualDomainName := ""
+	var expectedDomainName string = "example.com"
 
 	domainNameDoesNotExists()
 	createDomain = func(domainName string) {
@@ -32,14 +33,14 @@ func Test_given_domainDoesNotExist_then_newDomainIsCreated(t *testing.T)  {
 	}
 
 	// When
-	core.Init("example.com", mockCloudAdapter{})
+	core.Init(expectedDomainName, mockCloudAdapter{})
 
 	// Then
 	if !isDomainCreated {
 		t.Errorf("createDomain() was not interacted with as we expect!\n")
 	}
 
-	if actualDomainName != "example.com" {
+	if actualDomainName != expectedDomainName {
 		t.Errorf("expecting: 'example.com' got: '%s' \n", actualDomainName)
 	}
 }
