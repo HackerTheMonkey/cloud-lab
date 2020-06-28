@@ -1,7 +1,6 @@
 package cloud
 
 type DigitalOceanAdapter struct {
-
 }
 
 func (adapter DigitalOceanAdapter) CreateFloatingIP() {

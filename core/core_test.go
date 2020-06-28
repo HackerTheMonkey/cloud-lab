@@ -10,7 +10,7 @@ var createDomain func(domainName string)
 var isFloatingIPExists func() bool
 var createFloatingIP func()
 
-func Test_given_domainExists_then_noNewDomainIsCreated(t *testing.T)  {
+func Test_given_domainExists_then_noNewDomainIsCreated(t *testing.T) {
 	// Given
 	domainNameExists()
 	createDomainShouldNotBeInteractedWith(t)
@@ -20,7 +20,7 @@ func Test_given_domainExists_then_noNewDomainIsCreated(t *testing.T)  {
 	core.Init("example.com", mockCloudAdapter{})
 }
 
-func Test_given_domainDoesNotExist_then_newDomainIsCreated(t *testing.T)  {
+func Test_given_domainDoesNotExist_then_newDomainIsCreated(t *testing.T) {
 	// Given
 	isDomainCreated := false
 	actualDomainName := ""
@@ -45,7 +45,7 @@ func Test_given_domainDoesNotExist_then_newDomainIsCreated(t *testing.T)  {
 	}
 }
 
-func Test_given_floatingIPDoesNotExist_then_newFloatingIPCreated(t *testing.T)  {
+func Test_given_floatingIPDoesNotExist_then_newFloatingIPCreated(t *testing.T) {
 	// Given
 	domainNameExists()
 	floatingIPExists()
@@ -57,7 +57,7 @@ func Test_given_floatingIPDoesNotExist_then_newFloatingIPCreated(t *testing.T)  
 	createFloatingIPShouldNotBeInteractedWith(t)
 }
 
-func Test_given_floatingIPExists_then_noFloatingIPCreated(t *testing.T)  {
+func Test_given_floatingIPExists_then_noFloatingIPCreated(t *testing.T) {
 	// Given
 	isFloatingIPCreated := false
 	domainNameExists()
@@ -112,7 +112,6 @@ func domainNameDoesNotExists() {
 }
 
 type mockCloudAdapter struct {
-
 }
 
 func (m mockCloudAdapter) CreateFloatingIP() {

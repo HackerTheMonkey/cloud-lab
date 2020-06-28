@@ -13,7 +13,7 @@ func Init(domainName string, cloudAdapter cloud.Adapter) string {
 		cloudAdapter.CreateDomain(domainName)
 	}
 
-	if !cloudAdapter.IsFloatingIPExists(){
+	if !cloudAdapter.IsFloatingIPExists() {
 		cloudAdapter.CreateFloatingIP()
 	}
 
