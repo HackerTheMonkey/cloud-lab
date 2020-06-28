@@ -10,11 +10,9 @@ given floatingIPDoesNotExist then newFloatingIPIsCreated
 given floatingIPExists then noNewFloatingIPIsCreated
 
 given noARecordExistsInDomainAgainstFloatingIP then createNewARecord
-given RecordExistsInDomainAgainstFloatingIP then noNewARecordIsCreated
+given anARecordExistsInDomainAgainstFloatingIP then noNewARecordIsCreated
 
-given rootDropletExists then newRootDropletIsDeleted
-given noRootDropletExists then newRootDropletIsCreated floatingIPIsAssigned
-
-TODO: make changes to accommodate for blue-green deployments
+given greenRootDropletExists then newBlueRootDropletIsCreated floatingIPIsUnAssignedFromGreen floatingIPAssignedToBlue greenRootDropletIsDeleted
+given noGreenOrBlueRootDropletExists then newGreenRootDropletIsCreated floatingIPIsAssigned
 
 ```
