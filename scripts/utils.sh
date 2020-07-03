@@ -1,6 +1,6 @@
 
-# mostly meant to run manually and
-# sourced into the shell 
+# Intended to run manually and sourced into
+# an iteractive shell.
 
 api_key=$(cat ~/.digitalocean_api_key)
 
